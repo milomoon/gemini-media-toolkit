@@ -1,0 +1,37 @@
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Output files (user data)
+*_nowm.png
+*_nowm.jpg
+*_grid/
+*_tail/
+*_last.jpg
+_temp_*.png
+_temp_*.jpg
+
+# Config (contains user paths)
+config.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+install_log.txt
