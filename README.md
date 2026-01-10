@@ -1,20 +1,18 @@
 # Gemini Media Toolkit
 
+[![Author](https://img.shields.io/badge/Author-Xasia-blue)](https://www.xasia.cc)
+[![Website](https://img.shields.io/badge/🌐-www.xasia.cc-green)](https://www.xasia.cc)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+
 A Windows desktop tool for processing Gemini AI generated images and videos.
 
 专为 **AI动漫/AI影视剧** 创作者设计的媒体处理工具。
 
 ---
 
-## Author / 作者
-
-<img src="docs/author.png" width="120" align="left" style="margin-right: 15px;">
-
-**Xasia**
-
-🌐 [www.xasia.cc](https://www.xasia.cc) - 一键搭建跨境专线、网站和智能证书
-
-<br clear="left"/>
+<a href="https://www.xasia.cc">
+<img src="docs/author.png" width="100%">
+</a>
 
 ---
 
