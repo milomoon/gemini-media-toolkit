@@ -4,11 +4,9 @@
 [![Website](https://img.shields.io/badge/🌐-www.xasia.cc-green)](https://www.xasia.cc)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-A Windows desktop tool for processing Gemini AI generated images and videos.
+专为 **AI动漫/AI影视剧** 创作者设计的媒体处理工具
 
-专为 **AI动漫/AI影视剧** 创作者设计的媒体处理工具。
-
----
+A Windows tool for Gemini AI image/video processing
 
 <a href="https://www.xasia.cc">
 <img src="docs/author.png" width="100%">
@@ -16,115 +14,134 @@ A Windows desktop tool for processing Gemini AI generated images and videos.
 
 ---
 
-## Features / 功能
+## ✨ 功能介绍
 
-- 🎨 **Gemini Watermark Remover / 去水印** - Automatically remove watermarks from Gemini AI generated images using reverse alpha blending algorithm (100% local, no AI needed)
-- ✂️ **Grid Image Splitter / 分镜切割** - Auto-detect and split grid/storyboard images into individual frames
-- 🎬 **Video Frame Extractor / 视频帧提取** - Extract last frame and tail frames from videos
-- 📁 **Folder Monitor / 文件夹监控** - Watch download folder and process new files automatically
+| 功能 | 说明 |
+|------|------|
+| 🎨 **去水印** | 自动去除 Gemini 图片水印，100% 本地运行 |
+| ✂️ **分镜切割** | 自动检测网格图，切成单张图片 |
+| 🎬 **视频帧提取** | 提取视频最后一帧 + 最后2秒所有帧 |
+| 📁 **自动监控** | 监控下载文件夹，新文件自动处理 |
 
-## 中文介绍
+---
 
-### 这是什么？
+## 🚀 一键安装（小白看这里）
 
-一个专门为 **AI动漫制作** 和 **AI影视剧创作** 设计的效率工具。
+### 第一步：安装 Python
 
-当你用 Google Gemini 生成分镜图时，会遇到这些问题：
-- 图片带有 Gemini 水印
-- 多张分镜合并在一张图里（2x2、3x3 网格）
-- 需要手动裁剪每一张
+1. 打开 https://www.python.org/downloads/
+2. 点击黄色按钮 **Download Python 3.x.x**
+3. 运行安装程序，**勾选 "Add Python to PATH"**（很重要！）
+4. 点击 Install Now
 
-**这个工具帮你一键解决：**
+### 第二步：安装 FFmpeg（处理视频用）
 
-1. **自动去水印** - 使用逆向 Alpha 混合算法，数学计算去除水印，100% 本地运行
-2. **自动分镜切割** - 智能检测白色分割线，自动切成单张图片
-3. **视频帧提取** - 从 AI 生成的视频中提取关键帧，方便做图生视频的衔接
-
-### 使用场景
-
-- 用 Gemini 生成动漫分镜 → 自动去水印 + 切割
-- 用 Veo/Sora/可灵 生成视频 → 提取尾帧做下一段的起始帧
-- 批量处理 AI 生成的素材
-
-### 工作流程
-
+**方法一：命令安装（推荐）**
 ```
-下载 Gemini 图片 → 工具自动检测 → 去水印 → 检测网格 → 切割保存
+按 Win+R，输入 cmd，回车，然后输入：
+winget install FFmpeg
 ```
 
-全程自动，你只需要把图片下载到监控文件夹。
+**方法二：手动下载**
+1. 打开 https://www.gyan.dev/ffmpeg/builds/
+2. 下载 `ffmpeg-release-essentials.zip`
+3. 解压到 `C:\ffmpeg`
+4. 把 `C:\ffmpeg\bin` 添加到系统环境变量 PATH
 
-## Keywords
+### 第三步：下载本工具
 
-`gemini` `watermark-remover` `watermark-removal` `grid-splitter` `image-splitter` `storyboard` `video-frame-extractor` `google-gemini` `ai-image` `batch-processing` `ai-anime` `ai-movie` `ai-video` `veo` `sora` `kling` `ai动漫` `ai影视` `分镜` `去水印`
-
-## Requirements / 环境要求
-
-- Windows 10/11
-- Python 3.8+
-- FFmpeg (for video processing)
-
-## Quick Start / 快速开始
-
-### First Time Setup / 首次安装
-```bash
-# Run install script (creates venv and installs dependencies)
-# 双击运行安装脚本
-install.bat
+```
+点击本页面绿色按钮 Code → Download ZIP
+解压到任意位置
 ```
 
-### Daily Use / 日常使用
-```bash
-# Double-click to start
-# 双击启动
-start.vbs
+### 第四步：运行
+
+```
+双击 install.bat  （首次运行，自动安装依赖）
+以后双击 start.vbs 启动
 ```
 
-## Manual Installation / 手动安装
+---
+
+## 🐢 国内下载慢？用镜像源
+
+如果 `install.bat` 下载很慢或失败，手动执行：
 
 ```bash
-# Create virtual environment
+# 打开 cmd，进入工具目录，执行：
 python -m venv venv
 venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run
-python main.py
+pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 ```
 
-## Install FFmpeg / 安装 FFmpeg
+**常用国内镜像：**
+- 清华：`https://pypi.tuna.tsinghua.edu.cn/simple`
+- 阿里：`https://mirrors.aliyun.com/pypi/simple`
+- 豆瓣：`https://pypi.douban.com/simple`
 
-```bash
-# Using winget
-winget install FFmpeg
+---
 
-# Or download from: https://ffmpeg.org/download.html
-```
+## 📖 使用方法
 
-## Supported Formats / 支持格式
+1. 双击 `start.vbs` 启动程序
+2. 设置**监控目录**（你下载图片/视频的文件夹）
+3. 设置**输出目录**（处理后文件保存位置）
+4. 点击**开始监控**
+5. 下载 Gemini 图片或视频，工具自动处理
 
-**Images / 图片:** `.jpg` `.jpeg` `.png` `.webp`
+### 功能开关
 
-**Videos / 视频:** `.mp4` `.mov` `.webm` `.avi` `.mkv`
+- ☑️ **去水印** - 自动去除 Gemini 水印
+- ☑️ **分镜切割** - 自动切割网格图
 
-## How It Works / 原理
+---
 
-### Watermark Removal / 去水印
-Uses reverse alpha blending to mathematically remove the semi-transparent Gemini watermark. No AI or cloud service required - runs 100% locally.
+## 🎬 使用场景
 
-使用逆向 Alpha 混合算法，通过数学计算去除半透明水印。无需 AI，无需联网，100% 本地运行。
+- **Gemini 生成分镜** → 自动去水印 + 切割成单张
+- **Veo/Sora/可灵生成视频** → 提取尾帧做下一段起始帧
+- **批量处理 AI 素材** → 监控文件夹自动处理
 
-### Grid Detection / 网格检测
-Automatically detects white separator lines in grid/storyboard images and splits them into individual cells.
+---
 
-自动检测分镜图中的白色分割线，智能切割成单张图片。
+## 📁 支持格式
 
-### Video Processing / 视频处理
-Extracts the last frame as a standalone image, plus all frames from the last 2 seconds for review.
+| 类型 | 格式 |
+|------|------|
+| 图片 | `.jpg` `.jpeg` `.png` `.webp` |
+| 视频 | `.mp4` `.mov` `.webm` `.avi` `.mkv` |
 
-提取视频最后一帧作为独立图片，同时提取最后 2 秒的所有帧供选择。
+---
+
+## ❓ 常见问题
+
+**Q: 双击 install.bat 闪退？**
+A: Python 没装好。重新安装 Python，记得勾选 "Add Python to PATH"
+
+**Q: 提示找不到 ffmpeg？**
+A: FFmpeg 没装。按上面方法安装 FFmpeg
+
+**Q: 下载依赖很慢？**
+A: 用国内镜像，见上面"国内下载慢"部分
+
+**Q: 去水印后图片有问题？**
+A: 只支持 Gemini 生成的图片，其他来源的图片可能不兼容
+
+---
+
+## 🔧 原理说明
+
+### 去水印
+使用**逆向 Alpha 混合算法**，通过数学计算还原被水印覆盖的像素。不是 AI，不联网，100% 本地运行。
+
+### 分镜切割
+检测图片中的**白色分割线**，自动识别网格布局（2x2、3x3等），切割成单张图片。
+
+### 视频帧提取
+用 FFmpeg 提取视频最后一帧，同时提取最后 2 秒的所有帧供选择。
+
+---
 
 ## License
 
