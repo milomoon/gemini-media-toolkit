@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"/>
+    <title>Gemini Media Toolkit | 开源项目 | 黑盒智能体 | xasia.cc</title>
+    <meta name="description" content="Gemini Media Toolkit - AI动漫/影视剧创作工具，自动去除Gemini水印、分镜切割、视频帧提取"/>
+    <link rel="icon" href="/favicon.ico"/>
+    <link rel="canonical" href="https://www.xasia.cc/opensource/gemini-media-toolkit/"/>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #F9FAFB;
+            color: #111827;
+            min-height: 100vh;
+        }
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            background: white;
+            border-bottom: 1px solid #D1D5DB;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .logo img { height: 32px; }
+        .logo-text { display: flex; flex-direction: column; }
+        .logo-main { font-size: 18px; font-weight: bold; }
+        .logo-sub { font-size: 12px; color: #6B7280; }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a {
+            font-size: 14px;
+            color: #4B5563;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: #EA580C; }
+        
+        main {
+            padding-top: 120px;
+            padding-bottom: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .page-title {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 12px;
+            background: linear-gradient(to right, #111827, #EA580C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .page-desc {
+            color: #6B7280;
+            font-size: 16px;
+        }
+        
+        .project-card {
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 32px;
+        }
+        .project-preview {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        .project-content {
+            padding: 32px;
+        }
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .project-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #111827;
+        }
+        .project-badges {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .badge-python { background: #3B82F6; color: white; }
+        .badge-windows { background: #0078D4; color: white; }
+        .badge-ai { background: #8B5CF6; color: white; }
+        .badge-mit { background: #EAB308; color: white; }
+        
+        .project-intro {
+            font-size: 16px;
+            color: #4B5563;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+        .feature-item {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 20px;
+        }
+        .feature-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #111827;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .feature-title::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            background: #EA580C;
+            border-radius: 50%;
+        }
+        .feature-desc {
+            font-size: 14px;
+            color: #6B7280;
+            line-height: 1.6;
+        }
+        
+        .advantages {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+        .advantage-tag {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #111827, #374151);
+            color: white;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #111827;
+            color: white;
+            border: 2px solid #111827;
+        }
+        .btn-primary:hover {
+            background: #1F2937;
+        }
+        .btn-secondary {
+            background: white;
+            color: #111827;
+            border: 2px solid #E5E7EB;
+        }
+        .btn-secondary:hover {
+            border-color: #EA580C;
+            color: #EA580C;
+        }
+        
+        /* 使用场景区域 */
+        .usage-section {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 16px;
+            padding: 32px;
+            margin-top: 32px;
+            color: white;
+        }
+        .usage-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .usage-logo {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #00d9ff, #0f3460);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        .usage-title {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .usage-subtitle {
+            font-size: 14px;
+            color: #9CA3AF;
+        }
+        .usage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .usage-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+        .usage-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.2);
+        }
+        .usage-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .usage-desc {
+            font-size: 13px;
+            color: #9CA3AF;
+            line-height: 1.6;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: #F9FAFB;
+            border-radius: 12px;
+        }
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 12px;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 6px;
+            font-size: 13px;
+            color: #4B5563;
+        }
+        
+        .site-info {
+            background: linear-gradient(135deg, #F9FAFB, #FFF7ED);
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            margin-top: 48px;
+        }
+        .site-info-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #111827;
+            margin-bottom: 8px;
+        }
+        .site-info-desc {
+            font-size: 14px;
+            color: #6B7280;
+        }
+        .site-info a {
+            color: #EA580C;
+            text-decoration: none;
+        }
+        
+        footer {
+            background: #111827;
+            color: #9CA3AF;
+            text-align: center;
+            padding: 24px;
+            font-size: 12px;
+        }
+        
+        @media (max-width: 768px) {
+            .page-title { font-size: 28px; }
+            .project-content { padding: 20px; }
+            .project-title { font-size: 22px; }
+            .usage-section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="logo">
+                <img src="/logo-64.png" alt="Logo"/>
+                <div class="logo-text">
+                    <span class="logo-main">黑盒亚洲</span>
+                    <span class="logo-sub">xasia.cc</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="/agents">智能体列表</a>
+                <a href="/tutorials">使用指南</a>
+                <a href="/opensource" style="color:#EA580C;font-weight:600;">开源项目</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="page-header">
+            <h1 class="page-title">Gemini Media Toolkit</h1>
+            <p class="page-desc">AI动漫/影视剧创作者的效率工具</p>
+        </div>
+        
+        <div class="project-card">
+            <img src="https://raw.githubusercontent.com/ahaocd/gemini-media-toolkit/main/docs/author.png" alt="Gemini Media Toolkit" class="project-preview" onerror="this.style.display='none'"/>
+            <div class="project-content">
+                <div class="project-header">
+                    <h2 class="project-title">Gemini Media Toolkit</h2>
+                    <div class="project-badges">
+                        <span class="badge badge-python">Python 3.8+</span>
+                        <span class="badge badge-windows">Windows</span>
+                        <span class="badge badge-ai">Gemini AI</span>
+                        <span class="badge badge-mit">MIT License</span>
+                    </div>
+                </div>
+                
+                <p class="project-intro">
+                    专为 AI动漫制作 和 AI影视剧创作 设计的效率工具。
+                    当你用 Google Gemini 生成分镜图时，图片会带有水印，多张分镜合并在一张图里。
+                    这个工具帮你一键解决：自动去水印、自动分镜切割、视频帧提取。
+                    全程自动，你只需要把图片下载到监控文件夹。
+                </p>
+                
+                <!-- 技术栈 -->
+                <div class="tech-stack">
+                    <div class="tech-item">🐍 Python</div>
+                    <div class="tech-item">🖼️ PIL/Pillow</div>
+                    <div class="tech-item">📐 OpenCV</div>
+                    <div class="tech-item">🎬 FFmpeg</div>
+                    <div class="tech-item">🖥️ Tkinter GUI</div>
+                    <div class="tech-item">👁️ Watchdog</div>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-title">去水印</div>
+                        <div class="feature-desc">使用逆向 Alpha 混合算法，数学计算去除 Gemini 水印。100% 本地运行，无需联网，无需 AI</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-title">分镜切割</div>
+                        <div class="feature-desc">智能检测图片中的白色分割线，自动识别网格布局（2x2、3x3等），切割成单张图片</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-title">视频帧提取</div>
+                        <div class="feature-desc">从 AI 生成的视频中提取最后一帧 + 最后2秒所有帧，方便做图生视频的衔接</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-title">文件夹监控</div>
+                        <div class="feature-desc">监控下载文件夹，新文件自动处理。支持 Edge/Chrome 下载，文件重命名也能检测</div>
+                    </div>
+                </div>
+                
+                <div class="advantages">
+                    <span class="advantage-tag">一键安装</span>
+                    <span class="advantage-tag">国内镜像</span>
+                    <span class="advantage-tag">自动监控</span>
+                    <span class="advantage-tag">本地运行</span>
+                    <span class="advantage-tag">开源免费</span>
+                </div>
+                
+                <div class="action-buttons">
+                    <a href="https://github.com/ahaocd/gemini-media-toolkit" target="_blank" class="btn btn-primary">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                    <a href="/opensource" class="btn btn-secondary">返回开源项目</a>
+                </div>
+                
+                <!-- 使用场景区域 -->
+                <div class="usage-section">
+                    <div class="usage-header">
+                        <div class="usage-logo">🎬</div>
+                        <div>
+                            <div class="usage-title">使用场景</div>
+                            <div class="usage-subtitle">专为 AI 创作者设计</div>
+                        </div>
+                    </div>
+                    
+                    <div class="usage-grid">
+                        <div class="usage-card">
+                            <div class="usage-name">🎨 Gemini 分镜图</div>
+                            <div class="usage-desc">用 Gemini 生成动漫分镜 → 自动去水印 + 切割成单张图片，直接用于后续创作</div>
+                        </div>
+                        <div class="usage-card">
+                            <div class="usage-name">🎥 AI 视频衔接</div>
+                            <div class="usage-desc">用 Veo/Sora/可灵 生成视频 → 提取尾帧做下一段的起始帧，保持画面连贯</div>
+                        </div>
+                        <div class="usage-card">
+                            <div class="usage-name">📦 批量处理</div>
+                            <div class="usage-desc">监控下载文件夹，新素材自动处理，省去重复操作，专注创作本身</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="site-info">
+            <div class="site-info-title">黑盒智能体 | www.xasia.cc</div>
+            <div class="site-info-desc">智能体聚合平台 | 一键搭建跨境专线 | 电商网站 | 智能证书</div>
+        </div>
+    </main>
+    
+    <footer>
+        © 2025 Asia Black Box. All Rights Reserved.
+    </footer>
+</body>
+</html>

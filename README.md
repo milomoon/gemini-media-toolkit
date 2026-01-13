@@ -116,6 +116,9 @@ pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 ## ❓ 常见问题
 
+**Q: 双击 start.vbs 报错"文件名、目录名或卷标语法不正确"？**
+A: 路径问题。请确保项目文件夹路径不要太深，避免特殊字符。建议解压到 `D:\gemini-toolkit` 这样的简单路径
+
 **Q: 双击 install.bat 闪退？**
 A: Python 没装好。重新安装 Python，记得勾选 "Add Python to PATH"
 
@@ -127,6 +130,12 @@ A: 用国内镜像，见上面"国内下载慢"部分
 
 **Q: 去水印后图片有问题？**
 A: 只支持 Gemini 生成的图片，其他来源的图片可能不兼容
+
+**Q: 分镜切割不准确/切割失败？**
+A: 分镜检测算法依赖**白色分割线**。生成分镜时，请在提示词中明确要求：
+> "使用**白色分界线**分隔每个画面" 或 "panels separated by white borders"
+
+这样生成的分镜图切割效果最好
 
 ---
 

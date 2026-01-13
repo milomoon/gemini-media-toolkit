@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"/>
+    <title>开源项目 | 黑盒智能体 | xasia.cc</title>
+    <meta name="description" content="黑盒智能体开源项目 - AI工具、声音克隆、视频处理等开源项目"/>
+    <link rel="icon" href="/favicon.ico"/>
+    <link rel="canonical" href="https://www.xasia.cc/opensource/"/>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #F9FAFB; color: #111827; min-height: 100vh; }
+        .nav { position: fixed; top: 0; width: 100%; z-index: 50; background: white; border-bottom: 1px solid #D1D5DB; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; height: 80px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+        .logo img { height: 32px; }
+        .logo-text { display: flex; flex-direction: column; }
+        .logo-main { font-size: 18px; font-weight: bold; }
+        .logo-sub { font-size: 12px; color: #6B7280; }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a { font-size: 14px; color: #4B5563; text-decoration: none; transition: color 0.2s; }
+        .nav-links a:hover { color: #EA580C; }
+        main { padding-top: 120px; padding-bottom: 60px; max-width: 1200px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+        .page-header { text-align: center; margin-bottom: 48px; }
+        .page-title { font-size: 36px; font-weight: bold; margin-bottom: 12px; background: linear-gradient(to right, #111827, #EA580C); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .page-desc { color: #6B7280; font-size: 16px; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
+        .project-card { background: white; border: 1px solid #E5E7EB; border-radius: 16px; padding: 24px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); transition: all 0.3s; text-decoration: none; color: inherit; display: block; }
+        .project-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.12); border-color: #EA580C; }
+        .project-icon { width: 48px; height: 48px; background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px; }
+        .project-title { font-size: 20px; font-weight: bold; color: #111827; margin-bottom: 8px; }
+        .project-desc { font-size: 14px; color: #6B7280; line-height: 1.6; margin-bottom: 16px; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag { padding: 4px 10px; background: #F3F4F6; border-radius: 6px; font-size: 12px; color: #4B5563; }
+        .site-info { background: linear-gradient(135deg, #F9FAFB, #FFF7ED); border: 1px solid #E5E7EB; border-radius: 12px; padding: 24px; text-align: center; margin-top: 48px; }
+        .site-info-title { font-size: 18px; font-weight: bold; color: #111827; margin-bottom: 8px; }
+        .site-info-desc { font-size: 14px; color: #6B7280; }
+        footer { background: #111827; color: #9CA3AF; text-align: center; padding: 24px; font-size: 12px; }
+        @media (max-width: 768px) { .page-title { font-size: 28px; } .projects-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="logo"><img src="/logo-64.png" alt="Logo"/><div class="logo-text"><span class="logo-main">黑盒亚洲</span><span class="logo-sub">xasia.cc</span></div></a>
+            <div class="nav-links">
+                <a href="/agents">智能体列表</a>
+                <a href="/tutorials">使用指南</a>
+                <a href="/opensource" style="color:#EA580C;font-weight:600;">开源项目</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main>
+        <div class="page-header">
+            <h1 class="page-title">开源项目</h1>
+            <p class="page-desc">AI 创作者的效率工具集</p>
+        </div>
+        
+        <div class="projects-grid">
+            <!-- Gemini Media Toolkit -->
+            <a href="/opensource/gemini-media-toolkit/" class="project-card">
+                <div class="project-icon">🎨</div>
+                <h2 class="project-title">Gemini Media Toolkit</h2>
+                <p class="project-desc">AI动漫/影视剧创作工具。自动去除 Gemini 水印、分镜切割、视频帧提取。监控文件夹自动处理。</p>
+                <div class="project-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Windows</span>
+                    <span class="tag">去水印</span>
+                    <span class="tag">分镜切割</span>
+                </div>
+            </a>
+            
+            <!-- Voice Clone Studio -->
+            <a href="/opensource/voice-clone/" class="project-card">
+                <div class="project-icon">🎙️</div>
+                <h2 class="project-title">Voice Clone Studio</h2>
+                <p class="project-desc">基于 CosyVoice2 的 AI 声音克隆工具。支持情感控制、达芬奇集成、字幕生成。</p>
+                <div class="project-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Flask</span>
+                    <span class="tag">声音克隆</span>
+                    <span class="tag">达芬奇</span>
+                </div>
+            </a>
+            
+            <!-- TikTok BatchUploader -->
+            <a href="/opensource/tiktok-uploader/" class="project-card">
+                <div class="project-icon">📱</div>
+                <h2 class="project-title">TikTok-BatchUploader</h2>
+                <p class="project-desc">TikTok全智能运营助手。内容采集、视频剪辑、AI文案改写、自动发布，全流程自动化。</p>
+                <div class="project-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">Playwright</span>
+                    <span class="tag">自动发布</span>
+                    <span class="tag">AI改写</span>
+                </div>
+            </a>
+        </div>
+        
+        <div class="site-info">
+            <div class="site-info-title">黑盒智能体 | www.xasia.cc</div>
+            <div class="site-info-desc">智能体聚合平台 | 一键搭建跨境专线 | 电商网站 | 智能证书</div>
+        </div>
+    </main>
+    
+    <footer>© 2025 Asia Black Box. All Rights Reserved.</footer>
+</body>
+</html>
